@@ -705,7 +705,7 @@ footer{
       </div>
     </div>
     <div class="reveal">
-      <form name="zamovlennya" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" onsubmit="submitForm(event)">
+      <form name="zamovlennya" method="POST" action="https://formspree.io/f/mojzajeb" onsubmit="submitForm(event)">
         <input type="hidden" name="form-name" value="zamovlennya">
         <input type="hidden" name="bot-field" style="display:none">
         <div class="form-row">
@@ -754,7 +754,7 @@ footer{
   <div class="ft-logo">Тюль · Штори · Ролети</div>
   <div class="ft-addr">© 2025 · м. Сколе, вул. Данила Галицького, 5</div>
   <div class="ft-city">м. Сколе · Львівська обл.</div>
-<div style="font-size:10px;opacity:.3;text-align:center;padding:4px">v02.06.2026 21:19</div></footer>
+<div style="font-size:10px;opacity:.3;text-align:center;padding:4px">v02.06.2026 21:32</div></footer>
 
 <script>
 const IMGS = {
@@ -862,21 +862,25 @@ function submitForm(e){
 
   const data = new FormData(form);
 
-  fetch('/', {
+  fetch('https://formspree.io/f/mojzajeb', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: new URLSearchParams(data).toString()
+    headers: { 'Accept': 'application/json' },
+    body: data
   })
-  .then(() => {
-    btn.textContent = '✓ Заявку надіслано! Зателефонуємо скоро.';
-    btn.style.background = '#2e7d32';
-    btn.style.color = '#fff';
-    form.reset();
+  .then(r => {
+    if(r.ok){
+      btn.textContent = '✓ Заявку надіслано! Зателефонуємо скоро.';
+      btn.style.background = '#2e7d32';
+      btn.style.color = '#fff';
+      form.reset();
+    } else {
+      btn.textContent = '❌ Помилка. Зателефонуйте нам: 095 213 12 88';
+      btn.disabled = false;
+    }
   })
   .catch(() => {
-    btn.textContent = '✓ Заявку надіслано! Зателефонуємо скоро.';
-    btn.style.background = '#2e7d32';
-    btn.style.color = '#fff';
+    btn.textContent = '❌ Помилка. Зателефонуйте нам: 095 213 12 88';
+    btn.disabled = false;
   });
 }
 </script>
