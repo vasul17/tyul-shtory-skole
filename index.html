@@ -379,7 +379,7 @@ footer{
 
 /* ─── FLOATING CALL BUTTON (mobile only) ─── */
 .fab-call{
-  display:none;position:fixed;bottom:24px;left:20px;z-index:300;
+  display:none;position:fixed;bottom:20px;left:20px;z-index:300;
   background:var(--gold);color:var(--teal-d);
   width:60px;height:60px;border-radius:50%;
   font-size:26px;text-decoration:none;
@@ -404,7 +404,7 @@ footer{
   .hero-stripe-top{top:64px;}
 
   /* Floating call button */
-  .fab-call{display:flex;left:20px;right:auto;bottom:24px;}
+  .fab-call{display:flex;left:16px;right:auto;bottom:20px;}
 
   /* Hero */
   .hero{min-height:100svh;align-items:flex-end;padding-bottom:60px;}
@@ -494,13 +494,13 @@ footer{
 
 
 /* ── VIBER FLOAT BUTTON ──────────────────────────── */
-.viber-float{position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;flex-direction:column;align-items:center;gap:8px;}
+.viber-float{position:fixed;bottom:20px;right:20px;z-index:9999;display:flex;flex-direction:column;align-items:center;gap:8px;}
 .viber-float a{display:flex;align-items:center;justify-content:center;width:58px;height:58px;border-radius:50%;background:#7360f2;box-shadow:0 4px 20px rgba(115,96,242,.5);transition:.3s;text-decoration:none;}
 .viber-float a:hover{transform:scale(1.12);box-shadow:0 6px 28px rgba(115,96,242,.7);}
 .viber-float svg{width:30px;height:30px;fill:#fff;}
 .viber-float .vib-tooltip{background:rgba(0,0,0,.75);color:#fff;font-size:.78rem;padding:4px 10px;border-radius:20px;white-space:nowrap;opacity:0;transition:.2s;pointer-events:none;}
 .viber-float:hover .vib-tooltip{opacity:1;}
-@media(max-width:600px){.viber-float{bottom:16px;right:16px;} .fab-call{left:16px;right:auto;bottom:16px;}}
+@media(max-width:600px){.viber-float{bottom:20px;right:16px;flex-direction:row;} .viber-float .vib-tooltip{display:none;} .fab-call{left:16px;right:auto;bottom:20px;}}
 
 </style>
 </head>
