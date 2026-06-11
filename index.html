@@ -503,14 +503,7 @@ footer{
 @media(max-width:600px){.viber-float{bottom:20px;right:16px;flex-direction:row;} .viber-float .vib-tooltip{display:none;} .fab-call{left:16px;right:auto;bottom:20px;}}
 
 
-/* cat slider */
-.cat-slider{position:relative;}
-.cat-slide{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s;}
-.cat-slide.active{opacity:1;position:relative;}
-.cat-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:10;background:rgba(0,0,0,.45);color:#fff;border:none;font-size:28px;line-height:1;padding:4px 10px;cursor:pointer;border-radius:4px;}
-.cat-prev{left:6px;}
-.cat-next{right:6px;}
-.cat-arrow:hover{background:rgba(0,0,0,.75);}
+
 
 </style>
 </head>
@@ -630,12 +623,16 @@ footer{
       <div class="cat-overlay"><div class="cat-name">Карнизи</div><div class="cat-tag">Класичні та сучасні</div></div>
       <div class="cat-bar"></div>
     </div>
-    <div class="cat-item cat-slider" id="catBedroomSlider">
-      <img id="catBedroom" src="" alt="Готові рішення" class="cat-slide active">
-      <img id="catBedroom2" src="" alt="Готові рішення 2" class="cat-slide">
-      <button class="cat-arrow cat-prev" onclick="slidecat(event,-1)">&#8249;</button>
-      <button class="cat-arrow cat-next" onclick="slidecat(event,1)">&#8250;</button>
+    <div class="cat-item">
+      <img id="catBedroom" src="" alt="Готові рішення">
       <div class="cat-overlay"><div class="cat-name">Готові рішення</div><div class="cat-tag">Комплекти для кімнат</div></div>
+      <div class="cat-bar"></div>
+    </div>
+    <div class="cat-item">
+      <img id="catBedroom2" src="" alt="Готові рішення 2">
+      <div class="cat-overlay"><div class="cat-name">Готові рішення</div><div class="cat-tag">Комплекти для кімнат</div></div>
+      <div class="cat-bar"></div>
+    </div>
       <div class="cat-bar"></div>
     </div>
   </div>
@@ -870,85 +867,7 @@ document.getElementById('catFabrics').src=IMGS.img_fabrics;
 document.getElementById('catKarnyzy').src=IMGS.img_karnyzy;
 document.getElementById('catBedroom').src=IMGS.img_bedroom_new;
 document.getElementById('catBedroom2').src=IMGS.img_bedroom;
-function slidecat(e,dir){
-  e.stopPropagation();
-  var slides=document.querySelectorAll('#catBedroomSlider .cat-slide');
-  var cur=[].indexOf.call(slides,document.querySelector('#catBedroomSlider .cat-slide.active'));
-  slides[cur].classList.remove('active');
-  var next=(cur+dir+slides.length)%slides.length;
-  slides[next].classList.add('active');
-}
-document.getElementById('port0').src=IMGS.img_new_first;
-document.getElementById('port1').src=IMGS.img_brown2;
-document.getElementById('port2').src=IMGS.img_bedroom;
-document.getElementById('port3').src=IMGS.img_blind;
-document.getElementById('port4').src=IMGS.img_new1;
-document.getElementById('port5').src=IMGS.img_new2;
-document.getElementById('port6').src=IMGS.img_new3;
-document.getElementById('port9').src=IMGS.img_viber1;
-document.getElementById('port10').src=IMGS.img_viber2;
-
-// Lightbox
-const lbEl=document.getElementById('lb');
-const lbImg=document.getElementById('lbImg');
-const lbCounter=document.getElementById('lbCounter');
-let lbImages=[];
-let lbIndex=0;
-
-function lbOpen(imgs,idx){
-  lbImages=imgs;lbIndex=idx;
-  lbImg.src=lbImages[lbIndex];
-  lbCounter.textContent=(lbIndex+1)+' / '+lbImages.length;
-  lbEl.classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function lbClose(){
-  lbEl.classList.remove('open');
-  document.body.style.overflow='';
-}
-function lbNav(dir){
-  lbIndex=(lbIndex+dir+lbImages.length)%lbImages.length;
-  lbImg.src=lbImages[lbIndex];
-  lbCounter.textContent=(lbIndex+1)+' / '+lbImages.length;
-}
-lbEl.addEventListener('click',e=>{if(e.target===lbEl)lbClose();});
-document.addEventListener('keydown',e=>{
-  if(!lbEl.classList.contains('open'))return;
-  if(e.key==='Escape')lbClose();
-  if(e.key==='ArrowLeft')lbNav(-1);
-  if(e.key==='ArrowRight')lbNav(1);
-});
-
-// Portfolio clickable
-const portIds=['port0','port1','port2','port3','port4','port5','port6','port9','port10'];
-const portImgs=portIds.map(id=>document.getElementById(id).src);
-portIds.forEach((id,i)=>{
-  document.getElementById(id).parentElement.addEventListener('click',()=>lbOpen(portImgs,i));
-});
-
-// Reveal animation (enhancement only - content visible by default)
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
-},{threshold:.1});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-
-// Burger menu
-const burger=document.getElementById('burger');
-const mobMenu=document.getElementById('mobMenu');
-burger.addEventListener('click',()=>{
-  burger.classList.toggle('open');
-  mobMenu.classList.toggle('open');
-  document.body.style.overflow=mobMenu.classList.contains('open')?'hidden':'';
-});
-function closeMenu(){
-  burger.classList.remove('open');
-  mobMenu.classList.remove('open');
-  document.body.style.overflow='';
-}
-// Close menu on outside click
-document.addEventListener('click',e=>{
-  if(mobMenu.classList.contains('open')&&!mobMenu.contains(e.target)&&!burger.contains(e.target)){closeMenu();}
-});
+);
 
 function submitForm(e){
   e.preventDefault();
