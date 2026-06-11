@@ -379,7 +379,7 @@ footer{
 
 /* ─── FLOATING CALL BUTTON (mobile only) ─── */
 .fab-call{
-  display:none;position:fixed;bottom:24px;right:96px;z-index:300;
+  display:none;position:fixed;bottom:24px;left:20px;z-index:300;
   background:var(--gold);color:var(--teal-d);
   width:60px;height:60px;border-radius:50%;
   font-size:26px;text-decoration:none;
@@ -404,7 +404,7 @@ footer{
   .hero-stripe-top{top:64px;}
 
   /* Floating call button */
-  .fab-call{display:flex;}
+  .fab-call{display:flex;left:20px;right:auto;bottom:24px;}
 
   /* Hero */
   .hero{min-height:100svh;align-items:flex-end;padding-bottom:60px;}
@@ -500,7 +500,7 @@ footer{
 .viber-float svg{width:30px;height:30px;fill:#fff;}
 .viber-float .vib-tooltip{background:rgba(0,0,0,.75);color:#fff;font-size:.78rem;padding:4px 10px;border-radius:20px;white-space:nowrap;opacity:0;transition:.2s;pointer-events:none;}
 .viber-float:hover .vib-tooltip{opacity:1;}
-@media(max-width:600px){.viber-float{bottom:16px;right:16px;} .fab-call{right:88px;bottom:16px;}}
+@media(max-width:600px){.viber-float{bottom:16px;right:16px;} .fab-call{left:16px;right:auto;bottom:16px;}}
 
 </style>
 </head>
